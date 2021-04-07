@@ -2,9 +2,136 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+
     <title>CSE 3241 Project</title>
 </head>
 <body>
-    <!--default redirect to login-->
+    <!--
+        Default redirect to login
+
+        if patient:
+            show scheduled date / unassigned
+            show button to cancel request (delete account)
+        if administrator:
+            show batch input area
+            show appointment schedule area (click to auto assign by program?),
+            show button to generate report
+    -->
+
+    <!--
+        Which page is shown should be determined by backend verification.
+        change ```style="display: none"``` to ```style="display: block"``` to show it
+    -->
+
+    <div id="UserWrapper" class="container-fluid" style="display: none">
+        <div class="row">
+            <div class="col-10 m-auto">
+                <h1>Welcome, Bob</h1>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Appointment</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Patient name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-success">
+                        <th scope="row">1</th>
+                        <td>4668768786574</td>
+                        <td>Bob</td>
+                        <td>2020/01/01</td>
+                        <td>Completed</td>
+                    </tr>
+                    <!--
+                        If not yet scheduled
+                    -->
+                    <tr class="table-warning">
+                        <th scope="row">2</th>
+                        <td>Unassigned</td>
+                        <td>Bob</td>
+                        <td>Unassigned</td>
+                        <td>Waitlist: 5</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="AdminWrapper" class="container-fluid">
+        <div class="row mt-3">
+            <form class="col-10 m-auto mt-3 ml-2">
+                <input type="text" placeholder="Batch ID" id="batchId" class="form-control"/>
+                <input type="text" placeholder="Manufacturer" id="batchManufacturer" class="form-control"/>
+                <input type="date" id="expireDate" class="form-control"/>
+                <input type="number" placeholder="Quantity" id="batchQuantity" class="form-control"/>
+                <input type="submit" value="Upload new Batch" class="btn btn-primary mr-0 mb-5">
+            </form>
+            <div class="col-10 m-auto mr-2">
+                <!--
+                <div class="input-group">
+                    <button type="button" class="btn btn-outline-secondary">Action</button>
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Patients finished</a></li>
+                        <li><a class="dropdown-item" href="#">Patients scheduled</a></li>
+                        <li><a class="dropdown-item" href="#">Patients waiting</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Current Inventory</a></li>
+                    </ul>
+                </div>
+                -->
+                <div class="input-group">
+                    <label class="input-group-text" for="inputGroupSelect01">Showing list</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Current Inventory</option>
+                        <option value="1">Patients scheduled</option>
+                        <option value="2">Patients waiting</option>
+                        <option value="3">Patients finished</option>
+                    </select>
+
+                    <table class="table mb-5 table-info">
+                        <thead>
+                        <tr>
+                            <th scope="col">Manufacturer</th>
+                            <th scope="col">Received</th>
+                            <th scope="col">Distributed</th>
+                            <th scope="col">Expired</th>
+                            <th scope="col">Available</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">CVS</th>
+                            <td>50</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>47</td>
+                        </tr>
+                        <!--
+                            If not yet scheduled
+                        -->
+                        <tr>
+                            <th scope="row">CVS2.0</th>
+                            <td>10</td>
+                            <td>9</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -35,8 +35,8 @@ body{
     font-size: 1.2em;
 }
 
-#registerForm small{
-
+#registerForm span{
+    margin-top: 2em;
 }
 
 #registerForm #registerBtn{
