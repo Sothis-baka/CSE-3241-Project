@@ -6,36 +6,34 @@
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/register.css">
 
-    <title>Register</title>
+    <title>Appointment Register</title>
 </head>
 <body>
     <div class="container-fluid">
         <div id="registerWrapper" class="center row">
             <form id="registerForm" class="center col-xl-6 col-lg-8 col-10">
-                <h1>Create a new account</h1>
-                <!-- Username is name here -->
-                <!-- Admin can be manually add into database without registration -->
-                <input type="text" name="username" placeholder="Username" class="form-control w-75" required/>
-                <input type="password" name="password" placeholder="Password" class="form-control w-75" required/>
-                <input type="password" name="repeatPassword" placeholder="Repeat your password" class="form-control w-75" required/>
-                <input type="text" name="phone" placeholder="Phone number" class="form-control w-75" required/>
-                <input type="number" name="age" min="0" max="150" placeholder="Age" class="form-control w-75" required>
-                <input type="number" name="prior" min="1" max="3" placeholder="Priority" class="form-control w-75" required>
+                <h1>Enter Your Information Here</h1>
 
-                <div class="center row">
-                    <div class="col-6">
-                        <span>Expected vaccine take date</span>
-                    </div>
-                    <div class="col-6">
-                        <input type="date" name="date" class="form-control" required/>
-                    </div>
-                </div>
+                <input type="number" name="id" placeholder="Your Id" class="form-control w-75" required/>
+                <input type="text" name="Pssn" placeholder="Your Personal Ssn" maxlength="9" class="form-control w-75" required/>
+                <input type="date" name="date" class="form-control w-75" required>
+                <input type="number" name="Dtno" placeholder="Your Dtno" class="form-control w-75" required>
 
-                <span>Already have an account?</span>
-                <a href="./login.html">Sign up here.</a>
+                <!-- 
+                    php code here
+                -->
+
                 <input type="submit" id="registerBtn" value="Sign up" class="btn btn-primary"/>
             </form>
+
+            <br>
+            <div class="container-fluid">
+                <form class="col-10 m-auto mt-3 ml-2">
+                    <a class="btn btn-primary" href="patient.html" role="button">Back</a>
+                </form>   
+            </div>
         </div>
     </div>
+
 </body>
 </html>
