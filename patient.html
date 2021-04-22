@@ -9,15 +9,9 @@
 </head>
 <body>
     <!--
-        Default redirect to login
-
-        if patient:
-            show scheduled date / unassigned
-            show button to cancel request (delete account)
-        if administrator:
-            show batch input area
-            show appointment schedule area (click to auto assign by program?),
-            show button to generate report
+        For patient:
+        show scheduled date / unassigned
+        show button to cancel request (delete account)
     -->
 
     <!--
@@ -27,7 +21,7 @@
 
     <div id="UserWrapper" class="container-fluid" style="display: none">
         <div class="row">
-            <div class="col-10 m-auto">
+            <div class="text-center col-10 m-auto">
                 <h1>Welcome, Bob</h1>
 
                 <table class="table">
@@ -63,75 +57,51 @@
             </div>
         </div>
     </div>
-
-
-    <div id="AdminWrapper" class="container-fluid">
-        <div class="row mt-3">
-            <form class="col-10 m-auto mt-3 ml-2">
-                <input type="text" placeholder="Batch ID" id="batchId" class="form-control"/>
-                <input type="text" placeholder="Manufacturer" id="batchManufacturer" class="form-control"/>
-                <input type="date" id="expireDate" class="form-control"/>
-                <input type="number" placeholder="Quantity" id="batchQuantity" class="form-control"/>
-                <input type="submit" value="Upload new Batch" class="btn btn-primary mr-0 mb-5">
-            </form>
-            <div class="col-10 m-auto mr-2">
-                <!--
-                <div class="input-group">
-                    <button type="button" class="btn btn-outline-secondary">Action</button>
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Patients finished</a></li>
-                        <li><a class="dropdown-item" href="#">Patients scheduled</a></li>
-                        <li><a class="dropdown-item" href="#">Patients waiting</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Current Inventory</a></li>
-                    </ul>
-                </div>
-                -->
-                <div class="input-group">
-                    <label class="input-group-text" for="inputGroupSelect01">Showing list</label>
-                    <select class="form-select" id="inputGroupSelect01">
-                        <option selected>Current Inventory</option>
-                        <option value="1">Patients scheduled</option>
-                        <option value="2">Patients waiting</option>
-                        <option value="3">Patients finished</option>
-                    </select>
-
-                    <table class="table mb-5 table-info">
-                        <thead>
-                        <tr>
-                            <th scope="col">Manufacturer</th>
-                            <th scope="col">Received</th>
-                            <th scope="col">Distributed</th>
-                            <th scope="col">Expired</th>
-                            <th scope="col">Available</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">CVS</th>
-                            <td>50</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>47</td>
-                        </tr>
-                        <!--
-                            If not yet scheduled
-                        -->
-                        <tr>
-                            <th scope="row">CVS2.0</th>
-                            <td>10</td>
-                            <td>9</td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+    
+<form method= "POST" action="info.php">
+    <div align = "center">
+        <label for="patientList">
+            <div class="col-10 m-auto">
+                <h2>Select Patient Information:</h2>
             </div>
-        </div>
+        </label>
+    </div>
+    <br>
+
+    <div align = "center">
+        <select name= "ssn" id="patientList">
+            <!-- 
+                php code here
+                <?php 
+                $conn = new mysqli('localhost', 'root', 'mysql', 'BUR');
+
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                echo "connection successfully!";
+
+                $sql = "SELECT * FROM PATIENT ORDER BY Fname";
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                    $ssn = $row['Ssn'];
+                    $Lname = $row['Lname'];
+				    $Fname = $row['Fname'];
+				    echo "<option value=", $ssn, ">", $Fname, " ", $Lname, " ", $ssn, "</option>";
+                }
+            ?> -->
+            
+        </select>
+        <form class="col-10 m-auto mt-3 ml-2">
+            <input class="btn btn-primary" type="submit" value="Check Your Appointment" role="button">
+     </form>  
+    </div> 
+</form>
+    
+
+    <div class="container-fluid">
+        <form class="col-10 m-auto mt-3 ml-2">
+            <a class="btn btn-primary" href="register.html" role="button">Regist Your Appointment</a>
+        </form>   
     </div>
 
     <div class="container-fluid">
@@ -139,5 +109,6 @@
             <a class="btn btn-primary" href="index.html" role="button">Back</a>
         </form>   
     </div>
+    
 </body>
 </html>
