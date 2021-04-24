@@ -88,9 +88,9 @@
             }
         }
     }
-
     print <<< _HTML_
-        <a class="btn btn-primary" href="home.php" role="button">Home</a>
+    <h1 class="text-center">Batch added.</h1>
+        <a class="btn btn-primary form-control" href="adminIndex.php" role="button">back</a>
     _HTML_;
 
     mysqli_close($conn);
