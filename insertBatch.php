@@ -80,8 +80,8 @@
 
         //if there is a dose for patient
         if (mysqli_num_rows($result_dose) != 0) {
-            $row = mysqli_fetch_array($result_dose, MYSQLI_ASSOC);
-            $tno = $row['Tno'];
+            $row_dose = mysqli_fetch_array($result_dose, MYSQLI_ASSOC);
+            $tno = $row_dose['Tno'];
             $sql_makeAppointment = "INSERT INTO appointment values ('$tno','$id','$date','$tno')";
             $result_makeAppointment = mysqli_query($conn, $sql_makeAppointment);
             if (!$result_makeAppointment) {
