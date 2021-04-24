@@ -124,7 +124,7 @@
     }
     mysqli_close($conn);
     ?>
-    <a href="patientIndex.php" class="btn btn-primary">back</a>
+    <a href="patientIndex.php" class="btn btn-primary">Back</a>
 </div>
 </body>
 </html>

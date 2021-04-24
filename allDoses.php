@@ -85,9 +85,12 @@
                             <td>$fname $lname</td>
                             </tr>
         _HTML_;
-
     }
-
+    print <<< _HTML_
+        </table>
+        <a class="btn btn-primary form-control" href="adminIndex.php" role="button">Back</a>
+    _HTML_;
 
     ?>
+
 </div>

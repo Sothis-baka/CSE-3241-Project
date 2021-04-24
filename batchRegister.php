@@ -21,18 +21,21 @@
     <h1 class="text-center">Enter Batch Information</h1>
     <hr>
     <form method="POST" action="insertBatch.php">
-            <input type="text" name="manufacturer" placeholder="Manufacturer" class="form-control" required>
-        <br>
+            <label class='ml-1 mt-2'>Manufacturer: </label>
+            <input type="text" name="manufacturer" class="form-control" required>
+
         <?php
             date_default_timezone_set("America/New_York");
             //$today = date("Y-m-d");
             $today = "2021-03-01";
             print <<< _HTML_
-                <input type="date" name="expDate" min='$today' class="form-control" required>
+                <label class='ml-1 mt-2'>Expiration date</label>
+                <input type="date" name="expDate" min='$today' class="form-control" required/>
             _HTML_;
         ?>
-        <br>
-            <input type="number" name="amount" min=1 placeholder="Amount" class="form-control" required/>
+
+            <label class='ml-1 mt-2'>Amount of doses:</label>
+            <input type="number" name="amount" min=1 class="form-control" required/>
         <br>
             <input type="submit" id="registerBtn" value="Submit" class="btn btn-primary form-control"/>
     </form>
