@@ -42,7 +42,7 @@
     if (!$result_manuf) {
         die("Error: " . mysqli_error($conn));
     }
-
+    date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
     // iterate the manufacturer list
     while ($row = mysqli_fetch_array($result_manuf, MYSQLI_ASSOC)) {

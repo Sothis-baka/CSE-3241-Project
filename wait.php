@@ -36,7 +36,6 @@
 				<th>Priority</th>
 			</tr>
 	_HTML_;
-    $today = date("Y-m-d");
     $sql_patient = "SELECT * FROM patient where Id NOT IN (select Pid from appointment) ORDER BY Priority, age DESC";
     $result_patient = mysqli_query($conn, $sql_patient);
     if (!$result_patient) {

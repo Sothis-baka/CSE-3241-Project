@@ -34,10 +34,11 @@
                 <th>Manufacturer of Vaccine</th>
             </tr>
     _HTML_;
+    date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
     $sql_patientDateManuf = "SELECT p.Fname, p.Lname , a.Date, b.Manufacturer 
         FROM patient AS p INNER JOIN appointment AS a ON p.Id = a.Pid INNER JOIN dose d on a.Tno = d.Tno 
-        INNER JOIN batch b on d.Bid = b.Id WHERE a.Date < $today";
+        INNER JOIN batch b on d.Bid = b.Id WHERE a.Date < '$today'";
     $result_patientDateManuf = mysqli_query($conn, $sql_patientDateManuf);
     if (!$result_patientDateManuf) {
         die("Error: " . mysqli_error($conn));

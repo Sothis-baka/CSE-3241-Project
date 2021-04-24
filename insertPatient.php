@@ -47,7 +47,7 @@
 
     // 3. Check if there is a match dose for the new patient, the first part is doses that are not distributed
     $sql_dose = "SELECT * FROM (SELECT Tno, Bid FROM dose where Tno NOT IN (SELECT Tno FROM appointment NATURAL JOIN dose)) d INNER JOIN batch b 
-    on d.Bid = b.Id WHERE b.Expiredate>=$date ORDER BY b.Expiredate ASC LIMIT 1";
+    on d.Bid = b.Id WHERE b.Expiredate>= '$date' ORDER BY b.Expiredate ASC LIMIT 1";
     $result_dose = mysqli_query($conn, $sql_dose);
     if (!$result_dose) {
         die("Error: " . mysqli_error($conn));
@@ -56,6 +56,7 @@
     if (mysqli_num_rows($result_dose) != 0) {
         $row = mysqli_fetch_array($result_dose, MYSQLI_ASSOC);
         $tno = $row['Tno'];
+        date_default_timezone_set("America/New_York");
         $today = date("Y-m-d");
         //if today is later than earliest available date, assign the appointment today
         if ($date < $today) {
