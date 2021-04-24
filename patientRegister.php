@@ -25,11 +25,11 @@
             <br>
             <input type="text" name="lname"  placeholder="Last name" class="form-control" required>
             <br>
-            <input type="text" name="age" placeholder="Age" class="form-control" required/>
+            <input type="text" name="age" placeholder="Age" min=1 class="form-control" required/>
             <br>
             <input type="text" name="phone" placeholder="Phone number" maxlength="10"  class="form-control" required/>
             <br>
-            <input type="text" name="priority" placeholder="Priority" class="form-control" required/>
+            <input type="text" name="priority" placeholder="Priority" min=1 max=3 class="form-control" required/>
             <br>
             <input type="date" name="date" class="form-control" required>
             <br>

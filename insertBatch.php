@@ -51,6 +51,16 @@
         }
     }
 
+    // find the last dose tracking number to get the range of new doses
+    $sql_lastDose = "SELECT Tno FROM dose ORDER BY Tno DESC";
+    $result_lastDose = mysqli_query($conn, $sql_lastDose);
+    if (!$result_lastDose) {
+        die("Error: " . mysqli_error($conn));
+    }
+    $row_lastDose = mysqli_fetch_array($result_lastDose, MYSQLI_ASSOC);
+    $lastTno = $row_lastDose["Tno"];
+
+
     // find if there is a match dose for patient on the wait list
     date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
@@ -72,7 +82,7 @@
 
         //find the available dose that expire after the date
         $sql_dose = "SELECT * FROM (SELECT Tno, Bid FROM dose where Tno NOT IN (SELECT Tno FROM appointment NATURAL JOIN dose)) d INNER JOIN batch b 
-                        on d.Bid = b.Id WHERE b.Expiredate >= '$date' ORDER BY b.Expiredate ASC LIMIT 1";
+                        on d.Bid = b.Id WHERE b.Expiredate >= '$date' ORDER BY b.Expiredate ASC, d.Tno ASC LIMIT 1";
         $result_dose = mysqli_query($conn, $sql_dose);
         if (!$result_dose) {
             die("Error: " . mysqli_error($conn));
@@ -89,8 +99,9 @@
             }
         }
     }
+    $first_tno = $lastTno-$amount+1;
     print <<< _HTML_
-    <h1 class="text-center">Batch added.</h1>
+        <h1 class="text-center">Successfully added batch (id=$bid) with $amount dose(s) (id ranges: $first_tno-$lastTno).</h1>
         <a class="btn btn-primary form-control" href="adminIndex.php" role="button">back</a>
     _HTML_;
 

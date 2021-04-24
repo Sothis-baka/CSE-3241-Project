@@ -62,7 +62,7 @@
             echo "the date is".$date;
             //find the available dose that expire after the date
             $sql_dose = "SELECT * FROM (SELECT Tno, Bid FROM dose where Tno NOT IN (SELECT Tno FROM appointment NATURAL JOIN dose)) d INNER JOIN batch b 
-                        on d.Bid = b.Id WHERE b.Expiredate >= '$date' ORDER BY b.Expiredate ASC LIMIT 1";
+                        on d.Bid = b.Id WHERE b.Expiredate >= '$date' ORDER BY b.Expiredate ASC, d.Tno ASC LIMIT 1";
             $result_dose = mysqli_query($conn, $sql_dose);
             if (!$result_dose) {
                 die("Error: " . mysqli_error($conn));
@@ -88,11 +88,6 @@
             die("Error: " . mysqli_error($conn));
         }
     }
-
-
-
-
-
     mysqli_close($conn);
     ?>
 

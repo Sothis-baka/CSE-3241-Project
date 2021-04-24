@@ -23,9 +23,15 @@
     <form method="POST" action="insertBatch.php">
             <input type="text" name="manufacturer" placeholder="Manufacturer" class="form-control" required>
         <br>
-            <input type="date" name="expDate" class="form-control" required>
+        <?php
+            date_default_timezone_set("America/New_York");
+            $today = date("Y-m-d");
+            print <<< _HTML_
+                <input type="date" name="expDate" min='$today' class="form-control" required>
+            _HTML_;
+        ?>
         <br>
-            <input type="number" name="amount" placeholder="Amount" class="form-control" required/>
+            <input type="number" name="amount" min=1 placeholder="Amount" class="form-control" required/>
         <br>
             <input type="submit" id="registerBtn" value="Submit" class="btn btn-primary form-control"/>
     </form>
