@@ -113,7 +113,8 @@
     }
     // the patient can only remove their information if they have got vaccine
     date_default_timezone_set("America/New_York");
-    $today = date("Y-m-d");
+    //$today = date("Y-m-d");
+    $today = "2021-03-01";
     if(mysqli_num_rows($result_appointment) == 0 || $appDate >= $today){
         print <<< _HTML_
             <form action="removePatient.php" method="POST">

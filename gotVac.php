@@ -37,7 +37,8 @@
             </tr>
     _HTML_;
     date_default_timezone_set("America/New_York");
-    $today = date("Y-m-d");
+    //$today = date("Y-m-d");
+    $today = "2021-03-01";
     $sql_patientDateManuf = "SELECT p.Fname, p.Lname , a.Date, b.Manufacturer, a.Tno, d.Bid
         FROM patient AS p INNER JOIN appointment AS a ON p.Id = a.Pid INNER JOIN dose d on a.Tno = d.Tno 
         INNER JOIN batch b on d.Bid = b.Id WHERE a.Date < '$today'";
@@ -68,7 +69,7 @@
     _HTML_;
     mysqli_close($conn);
     ?>
-    <a href="adminIndex.php" class="btn btn-primary form-control">Back</a>
+    <a href="adminIndex.php" class="btn btn-primary form-control">back</a>
 </div>
 </body>
 </html>

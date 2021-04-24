@@ -43,7 +43,8 @@
         die("Error: " . mysqli_error($conn));
     }
     date_default_timezone_set("America/New_York");
-    $today = date("Y-m-d");
+    //$today = date("Y-m-d");
+    $today = "2021-03-01";
     // iterate the manufacturer list
     while ($row = mysqli_fetch_array($result_manuf, MYSQLI_ASSOC)) {
         $manufacturer = $row['Manufacturer'];
@@ -86,7 +87,7 @@
     mysqli_close($conn);
     ?>
 
-    <a href="adminIndex.php"  class="btn btn-primary form-control">Back</a>
+    <a href="adminIndex.php"  class="btn btn-primary form-control">back</a>
 
 </div>
 </body>

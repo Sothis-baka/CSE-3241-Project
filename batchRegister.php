@@ -25,7 +25,8 @@
         <br>
         <?php
             date_default_timezone_set("America/New_York");
-            $today = date("Y-m-d");
+            //$today = date("Y-m-d");
+            $today = "2021-03-01";
             print <<< _HTML_
                 <input type="date" name="expDate" min='$today' class="form-control" required>
             _HTML_;

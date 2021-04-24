@@ -63,7 +63,8 @@
 
     // find if there is a match dose for patient on the wait list
     date_default_timezone_set("America/New_York");
-    $today = date("Y-m-d");
+    //$today = date("Y-m-d");
+    $today = "2021-03-01";
     $sql_waitList = "SELECT * FROM patient WHERE Id NOT IN (SELECT Pid FROM appointment) ORDER BY Priority, age DESC";
     $result_waitList = mysqli_query($conn, $sql_waitList);
     if (!$result_waitList) {

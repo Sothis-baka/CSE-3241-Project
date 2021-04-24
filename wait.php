@@ -34,6 +34,7 @@
 				<th>Name</th>
 				<th>Age</th>
 				<th>Priority</th>
+				<th>Earliest available date</th>
 			</tr>
 	_HTML_;
     $sql_patient = "SELECT * FROM patient where Id NOT IN (select Pid from appointment) ORDER BY Priority, age DESC";
@@ -47,12 +48,14 @@
         $lname = $row_patient['Lname'];
         $age = $row_patient['Age'];
         $priority = $row_patient['Priority'];
+        $date = $row_patient['Date'];
         print <<< _HTML_
 							<tr>
 							<td>$id</td>
 							<td>$fname $lname</td>
 							<td>$age</td>
 							<td>$priority</td>
+							<td>$date</td>
 							</tr>
 		_HTML_;
     }
@@ -62,7 +65,7 @@
     mysqli_close($conn);
     ?>
 
-    <a href="adminIndex.php" class="btn btn-primary form-control">Back</a>
+    <a href="adminIndex.php" class="btn btn-primary form-control">back</a>
 
 </div>
 </body>

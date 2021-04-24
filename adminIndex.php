@@ -20,11 +20,12 @@
     <h1 class="text-center">Admin Interface</h1>
     <hr>
     <a class="btn btn-primary btn-lg btn-block" href="batchRegister.php" role="button">Enter Batch</a>
+    <a class="btn btn-primary btn-lg btn-block" href="allDoses.php" role="button">All Doses</a>
     <a class="btn btn-primary btn-lg btn-block" href="inventory.php" role="button">Vaccine Inventory</a>
     <a class="btn btn-primary btn-lg btn-block" href="gotVac.php" role="button">Patient Gotten Vaccine</a>
     <a class="btn btn-primary btn-lg btn-block" href="haveAppointment.php" role="button">Scheduled Patient</a>
     <a class="btn btn-primary btn-lg btn-block" href="wait.php" role="button">Wait List</a>
-    <a class="btn btn-primary btn-lg btn-block" href="home.php" role="button">Back</a>
+    <a class="btn btn-primary btn-lg btn-block" href="home.php" role="button">back</a>
 </div>
 
 </body>

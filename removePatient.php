@@ -43,7 +43,8 @@
 
         // find if there is a match dose for patient on the wait list
         date_default_timezone_set("America/New_York");
-        $today = date("Y-m-d");
+        //$today = date("Y-m-d");
+        $today = "2021-03-01";
         $sql_waitList = "SELECT * FROM patient WHERE Id NOT IN (SELECT Pid FROM appointment) ORDER BY Priority, age DESC";
         $result_waitList = mysqli_query($conn, $sql_waitList);
         if (!$result_waitList) {
@@ -59,7 +60,7 @@
             if ($date < $today) {
                 $date = $today;
             }
-            echo "the date is".$date;
+
             //find the available dose that expire after the date
             $sql_dose = "SELECT * FROM (SELECT Tno, Bid FROM dose where Tno NOT IN (SELECT Tno FROM appointment NATURAL JOIN dose)) d INNER JOIN batch b 
                         on d.Bid = b.Id WHERE b.Expiredate >= '$date' ORDER BY b.Expiredate ASC, d.Tno ASC LIMIT 1";

@@ -57,7 +57,8 @@
         $row = mysqli_fetch_array($result_dose, MYSQLI_ASSOC);
         $tno = $row['Tno'];
         date_default_timezone_set("America/New_York");
-        $today = date("Y-m-d");
+        //$today = date("Y-m-d");
+        $today = "2021-03-01";
         //if today is later than earliest available date, assign the appointment today
         if ($date < $today) {
             $date = $today;
