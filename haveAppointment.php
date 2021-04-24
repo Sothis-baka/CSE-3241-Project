@@ -23,21 +23,23 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
+
     print <<< _HTML_
-	    <h1 class="text-center">Scheduled Patient</h1>
-	    <br>
-		<table class="table table-hover">
-			<tr>
-			    <th>Id</th>
-				<th>Name</th>
-				<th>Date</th>
-				<th>Phone number</th>
-				<th>Manufacturer of vaccine</th>
-				<th>Batch#</th>
-				<th>Tracking#</th>
-				<th>Expiration Date</th>
-			</tr>
-	_HTML_;
+        <h1 class="text-center">Scheduled Patient</h1>
+            <br>
+            <table class="table table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Phone Number</th>
+                <th>Manufacturer of vaccine</th>
+                <th>Batch#</th>
+                <th>Tracking#</th>
+                <th>Expiration Date</th>
+            </tr>
+    _HTML_;
+    
     date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
     $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date, a.Tno, b.Manufacturer, d.Bid, b.Expiredate FROM patient p INNER JOIN appointment a ON 
@@ -79,7 +81,5 @@
 </div>
 </body>
 </html>
-
-
 
 
