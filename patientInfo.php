@@ -67,7 +67,7 @@
                 <td>$priority</td>
             </tr>
     _HTML_;
-    $sql_appointment = "SELECT * FROM appointment WHERE Pid = $id";
+    $sql_appointment = "SELECT * FROM appointment a NATURAL JOIN dose d INNER JOIN batch b ON b.Id=d.Bid WHERE a.Pid = $id";
     $result_appointment = mysqli_query($conn, $sql_appointment);
     if (!$result_appointment) {
         die("Error: " . mysqli_error($conn));
@@ -75,23 +75,44 @@
     if (mysqli_num_rows($result_appointment) != 0) {
         $row_appointment = mysqli_fetch_array($result_appointment, MYSQLI_ASSOC);
         $appDate = $row_appointment['Date'];
+        $bid = $row_appointment['Bid'];
+        $tno = $row_appointment['Tno'];
+        $manufacturer = $row_appointment['Manufacturer'];
+        $eDate = $row_appointment['Expiredate'];
         print <<< _HTML_
         <tr>
-            <td>Scheduled date</td>
+            <td>Appointment date</td>
             <td>$appDate</td>
+        </tr>
+        <tr>
+            <td>Vaccine Manufacturer</td>
+            <td>$manufacturer</td>
+        </tr>
+        <tr>
+            <td>Batch#</td>
+            <td>$bid</td>
+        </tr>
+        <tr>
+            <td>Tracking#</td>
+            <td>$tno</td>
+        </tr>
+        <tr>
+            <td>Expiration Date</td>
+            <td>$eDate</td>
         </tr>
         </table>
         _HTML_;
     } else {
         print <<< _HTML_
         <tr>
-            <td>Scheduled date</td>
-            <td>No schedule yet</td>
+            <td>Appointment date</td>
+            <td>No Appointment yet</td>
         </tr>
         </table>
         _HTML_;
     }
     // the patient can only remove their information if they have got vaccine
+    date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
     if(mysqli_num_rows($result_appointment) == 0 || $appDate >= $today){
         print <<< _HTML_

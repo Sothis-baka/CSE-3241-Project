@@ -25,12 +25,12 @@
             <br>
             <input type="text" name="lname"  placeholder="Last name" class="form-control" required>
             <br>
-            <input type="text" name="age" placeholder="Age" class="form-control" required/>
+            <input type="number" name="age" placeholder="Age" min=1 class="form-control" required/>
             <br>
             <input type="text" name="phone" placeholder="Phone number" maxlength="10"  class="form-control" required/>
             <br>
-            <input type="text" name="priority" placeholder="Priority" class="form-control" required/>
-            <br>
+            <input type="number" name="priority" placeholder="Priority" min=1 max=3 class="form-control" required/>
+            <label class="ml-1 mt-2">Earliest available date</label>
             <input type="date" name="date" class="form-control" required>
             <br>
             <input type="submit" id="registerBtn" value="Sign up" class="btn btn-primary form-control"/>

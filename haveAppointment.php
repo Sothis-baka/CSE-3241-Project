@@ -23,19 +23,27 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
+
     print <<< _HTML_
-	    <h1 class="text-center">Scheduled Patient</h1>
-	    <br>
-		<table class="table table-hover">
-			<tr>
-			    <th>Id</th>
-				<th>Name</th>
-				<th>Date</th>
-				<th>Phone number</th>
-			</tr>
-	_HTML_;
+        <h1 class="text-center">Scheduled Patient</h1>
+            <br>
+            <table class="table table-hover">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Phone Number</th>
+                <th>Manufacturer of vaccine</th>
+                <th>Batch#</th>
+                <th>Tracking#</th>
+                <th>Expiration Date</th>
+            </tr>
+    _HTML_;
+    
+    date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
-    $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date FROM patient p inner join appointment a on p.Id = a.Pid WHERE p.Date >= $today";
+    $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date, a.Tno, b.Manufacturer, d.Bid, b.Expiredate FROM patient p INNER JOIN appointment a ON 
+        p.Id = a.Pid INNER JOIN dose d ON d.Tno=a.Tno INNER JOIN batch b on d.Bid = b.Id WHERE a.Date >= '$today'";
     $result_patientDate = mysqli_query($conn, $sql_patientDate);
     if (!$result_patientDate) {
         die("Error: " . mysqli_error($conn));
@@ -47,12 +55,20 @@
         $lname = $row_patientDate['Lname'];
         $date = $row_patientDate['Date'];
         $phone = $row_patientDate['Phone'];
+        $manufacturer = $row_patientDate['Manufacturer'];
+        $bid = $row_patientDate['Bid'];
+        $tno = $row_patientDate['Tno'];
+        $eDate = $row_patientDate['Expiredate'];
         print <<< _HTML_
 							<tr>
 							<td>$id</td>
 							<td>$fname $lname</td>
 							<td>$date</td>
 							<td>$phone</td>
+							<td>$manufacturer</td>
+							<td>$bid</td>
+							<td>$tno</td>
+							<td>$eDate</td>
 							</tr>
 		_HTML_;
     }
@@ -65,7 +81,5 @@
 </div>
 </body>
 </html>
-
-
 
 

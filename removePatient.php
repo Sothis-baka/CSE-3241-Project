@@ -23,15 +23,71 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-
-    $sql_removePatient = "DELETE FROM patient WHERE Id=$id";
-    $result_removePatient = mysqli_query($conn, $sql_removePatient);
-    if ($result_removePatient) {
-        echo "You have successfully remove your information.";
-    } else {
+    $sql_appointment = "SELECT * FROM patient p INNER JOIN appointment a on p.Id = a.Pid";
+    $result_appointment = mysqli_query($conn, $sql_appointment);
+    if (!$result_appointment) {
         die("Error: " . mysqli_error($conn));
     }
 
+    $sql_removePatient = "DELETE FROM patient WHERE Id=$id";
+
+    if (mysqli_num_rows($result_appointment) != 0) {
+        $row_appointment = mysqli_fetch_array($result_appointment, MYSQLI_ASSOC);
+        $tno = $row_appointment['Tno'];
+        $result_removePatient = mysqli_query($conn, $sql_removePatient);
+        if ($result_removePatient) {
+            echo "You have successfully remove your information.";
+        } else {
+            die("Error: " . mysqli_error($conn));
+        }
+
+        // find if there is a match dose for patient on the wait list
+        date_default_timezone_set("America/New_York");
+        $today = date("Y-m-d");
+        $sql_waitList = "SELECT * FROM patient WHERE Id NOT IN (SELECT Pid FROM appointment) ORDER BY Priority, age DESC";
+        $result_waitList = mysqli_query($conn, $sql_waitList);
+        if (!$result_waitList) {
+            die("Error: " . mysqli_error($conn));
+        }
+
+        // iterating wait list
+        while ($row_waitList = mysqli_fetch_array($result_waitList, MYSQLI_ASSOC)) {
+            $id = $row_waitList['Id'];
+            $date = $row_waitList['Date'];
+
+            // if today is later then the earliest available date
+            if ($date < $today) {
+                $date = $today;
+            }
+            echo "the date is".$date;
+            //find the available dose that expire after the date
+            $sql_dose = "SELECT * FROM (SELECT Tno, Bid FROM dose where Tno NOT IN (SELECT Tno FROM appointment NATURAL JOIN dose)) d INNER JOIN batch b 
+                        on d.Bid = b.Id WHERE b.Expiredate >= '$date' ORDER BY b.Expiredate ASC, d.Tno ASC LIMIT 1";
+            $result_dose = mysqli_query($conn, $sql_dose);
+            if (!$result_dose) {
+                die("Error: " . mysqli_error($conn));
+            }
+
+            //if there is a dose for patient
+            if (mysqli_num_rows($result_dose) != 0) {
+                $row_dose = mysqli_fetch_array($result_dose, MYSQLI_ASSOC);
+                $tno = $row_dose['Tno'];
+                $sql_makeAppointment = "INSERT INTO appointment values ('$tno','$id','$date','$tno')";
+                $result_makeAppointment = mysqli_query($conn, $sql_makeAppointment);
+                if (!$result_makeAppointment) {
+                    die("Error: " . mysqli_error($conn));
+                }
+            }
+        }
+
+    }else{
+        $result_removePatient = mysqli_query($conn, $sql_removePatient);
+        if ($result_removePatient) {
+            echo "You have successfully remove your information.";
+        } else {
+            die("Error: " . mysqli_error($conn));
+        }
+    }
     mysqli_close($conn);
     ?>
 
