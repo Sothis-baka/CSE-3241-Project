@@ -62,7 +62,7 @@
     mysqli_close($conn);
     ?>
 
-    <a href="adminIndex.php" class="btn btn-primary form-control">back</a>
+    <a href="adminIndex.php" class="btn btn-primary form-control">Back</a>
 
 </div>
 </body>
