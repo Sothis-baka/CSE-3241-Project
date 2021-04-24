@@ -31,12 +31,14 @@
             <tr>
                 <th>Name</th>
                 <th>Date</th>
-                <th>Manufacturer of Vaccine</th>
+                <th>Manufacturer of vaccine</th>
+                <th>Batch#</th>
+                <th>Tracking#</th>
             </tr>
     _HTML_;
     date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
-    $sql_patientDateManuf = "SELECT p.Fname, p.Lname , a.Date, b.Manufacturer, a.Tno 
+    $sql_patientDateManuf = "SELECT p.Fname, p.Lname , a.Date, b.Manufacturer, a.Tno, d.Bid
         FROM patient AS p INNER JOIN appointment AS a ON p.Id = a.Pid INNER JOIN dose d on a.Tno = d.Tno 
         INNER JOIN batch b on d.Bid = b.Id WHERE a.Date < '$today'";
     $result_patientDateManuf = mysqli_query($conn, $sql_patientDateManuf);
@@ -49,12 +51,14 @@
         $lname = $row_patientDateManuf['Lname'];
         $date = $row_patientDateManuf['Date'];
         $manufacturer = $row_patientDateManuf['Manufacturer'];
+        $bid = $row_patientDateManuf['Bid'];
         $tno = $row_patientDateManuf['Tno'];
         print <<< _HTML_
                             <tr>
                             <td>$fname $lname</td>
                             <td>$date</td>
                             <td>$manufacturer</td>
+                            <td>$bid</td>
                             <td>$tno</td>
                             </tr>
         _HTML_;
