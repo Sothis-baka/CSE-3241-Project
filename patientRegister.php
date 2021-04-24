@@ -30,7 +30,7 @@
             <input type="text" name="phone" placeholder="Phone number" maxlength="10"  class="form-control" required/>
             <br>
             <input type="number" name="priority" placeholder="Priority" min=1 max=3 class="form-control" required/>
-            <br>
+            <label class="ml-1 mt-2">Earliest available date</label>
             <input type="date" name="date" class="form-control" required>
             <br>
             <input type="submit" id="registerBtn" value="Sign up" class="btn btn-primary form-control"/>
