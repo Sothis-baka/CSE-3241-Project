@@ -36,7 +36,7 @@
 	_HTML_;
     date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
-    $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date FROM patient p inner join appointment a on p.Id = a.Pid WHERE p.Date >= '$today'";
+    $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date FROM patient p inner join appointment a on p.Id = a.Pid WHERE a.Date >= '$today'";
     $result_patientDate = mysqli_query($conn, $sql_patientDate);
     if (!$result_patientDate) {
         die("Error: " . mysqli_error($conn));
