@@ -21,13 +21,16 @@
     <h1 class="text-center">Enter Batch Information</h1>
     <hr>
     <form method="POST" action="insertBatch.php">
-            <input type="text" name="manufacturer" placeholder="Manufacturer" class="form-control" required>
+            <input type="text" name="manufacturer" placeholder="Manufacturer" class="form-control" style='margin-bottom: -1em' required>
         <br>
         <?php
             date_default_timezone_set("America/New_York");
             $today = date("Y-m-d");
-            print <<< _HTML_
-                <input type="date" name="expDate" min='$today' class="form-control" required>
+			print <<< _HTML_
+                <label class='ml-1'>Expire date</label>
+            _HTML_;
+			print <<< _HTML_
+                <input type="date" name="expDate" min='$today' class="form-control" required/>
             _HTML_;
         ?>
         <br>
@@ -42,5 +45,3 @@
 
 </body>
 </html>
-
-
