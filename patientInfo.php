@@ -75,10 +75,15 @@
     if (mysqli_num_rows($result_appointment) != 0) {
         $row_appointment = mysqli_fetch_array($result_appointment, MYSQLI_ASSOC);
         $appDate = $row_appointment['Date'];
+        $tno = $row_appointment['Tno'];
         print <<< _HTML_
         <tr>
             <td>Scheduled date</td>
             <td>$appDate</td>
+        </tr>
+        <tr>
+            <td>Dose tracking number</td>
+        <td>$tno</td>
         </tr>
         </table>
         _HTML_;

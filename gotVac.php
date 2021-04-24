@@ -36,7 +36,7 @@
     _HTML_;
     date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
-    $sql_patientDateManuf = "SELECT p.Fname, p.Lname , a.Date, b.Manufacturer 
+    $sql_patientDateManuf = "SELECT p.Fname, p.Lname , a.Date, b.Manufacturer, a.Tno 
         FROM patient AS p INNER JOIN appointment AS a ON p.Id = a.Pid INNER JOIN dose d on a.Tno = d.Tno 
         INNER JOIN batch b on d.Bid = b.Id WHERE a.Date < '$today'";
     $result_patientDateManuf = mysqli_query($conn, $sql_patientDateManuf);
@@ -49,11 +49,13 @@
         $lname = $row_patientDateManuf['Lname'];
         $date = $row_patientDateManuf['Date'];
         $manufacturer = $row_patientDateManuf['Manufacturer'];
+        $tno = $row_patientDateManuf['Tno'];
         print <<< _HTML_
                             <tr>
                             <td>$fname $lname</td>
                             <td>$date</td>
                             <td>$manufacturer</td>
+                            <td>$tno</td>
                             </tr>
         _HTML_;
     }

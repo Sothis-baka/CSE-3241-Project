@@ -32,11 +32,12 @@
 				<th>Name</th>
 				<th>Date</th>
 				<th>Phone number</th>
+				<th>Dose tracking number</th>
 			</tr>
 	_HTML_;
     date_default_timezone_set("America/New_York");
     $today = date("Y-m-d");
-    $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date FROM patient p inner join appointment a on p.Id = a.Pid WHERE a.Date >= '$today'";
+    $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date, a.Tno FROM patient p inner join appointment a on p.Id = a.Pid WHERE a.Date >= '$today'";
     $result_patientDate = mysqli_query($conn, $sql_patientDate);
     if (!$result_patientDate) {
         die("Error: " . mysqli_error($conn));
@@ -48,12 +49,14 @@
         $lname = $row_patientDate['Lname'];
         $date = $row_patientDate['Date'];
         $phone = $row_patientDate['Phone'];
+        $tno = $row_patientDate['Tno'];
         print <<< _HTML_
 							<tr>
 							<td>$id</td>
 							<td>$fname $lname</td>
 							<td>$date</td>
 							<td>$phone</td>
+							<td>$tno</td>
 							</tr>
 		_HTML_;
     }
