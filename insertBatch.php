@@ -69,7 +69,7 @@
         if ($date < $today) {
             $date = $today;
         }
-        echo "the date is".$date;
+
         //find the available dose that expire after the date
         $sql_dose = "SELECT * FROM (SELECT Tno, Bid FROM dose where Tno NOT IN (SELECT Tno FROM appointment NATURAL JOIN dose)) d INNER JOIN batch b 
                         on d.Bid = b.Id WHERE b.Expiredate >= '$date' ORDER BY b.Expiredate ASC LIMIT 1";
