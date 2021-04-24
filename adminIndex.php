@@ -24,7 +24,7 @@
     <a class="btn btn-primary btn-lg btn-block" href="gotVac.php" role="button">Patient Gotten Vaccine</a>
     <a class="btn btn-primary btn-lg btn-block" href="haveAppointment.php" role="button">Scheduled Patient</a>
     <a class="btn btn-primary btn-lg btn-block" href="wait.php" role="button">Wait List</a>
-    <a class="btn btn-primary btn-lg btn-block" href="home.php" role="button">back</a>
+    <a class="btn btn-primary btn-lg btn-block" href="home.php" role="button">Back</a>
 </div>
 
 </body>
