@@ -41,7 +41,7 @@
     date_default_timezone_set("America/New_York");
 //    $today = date("Y-m-d");
     $today = "2021-03-01";
-    $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date, a.Tno, b.Manufacturer, d.Bid, b.Expiredate FROM patient p INNER JOIN appointment a ON 
+    $sql_patientDate = "SELECT p.Id, p.Fname, p.Lname, p.Phone, a.Date, a.Tno, b.Manufacturer, d.Bid, b.ExpireDate FROM patient p INNER JOIN appointment a ON 
         p.Id = a.Pid INNER JOIN dose d ON d.Tno=a.Tno INNER JOIN batch b on d.Bid = b.Id WHERE a.Date >= '$today'";
     $result_patientDate = mysqli_query($conn, $sql_patientDate);
     if (!$result_patientDate) {
@@ -57,7 +57,7 @@
         $manufacturer = $row_patientDate['Manufacturer'];
         $bid = $row_patientDate['Bid'];
         $tno = $row_patientDate['Tno'];
-        $eDate = $row_patientDate['Expiredate'];
+        $eDate = $row_patientDate['ExpireDate'];
         print <<< _HTML_
 							<tr>
 							<td>$id</td>

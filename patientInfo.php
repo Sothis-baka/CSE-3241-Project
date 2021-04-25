@@ -78,7 +78,7 @@
         $bid = $row_appointment['Bid'];
         $tno = $row_appointment['Tno'];
         $manufacturer = $row_appointment['Manufacturer'];
-        $eDate = $row_appointment['Expiredate'];
+        $eDate = $row_appointment['ExpireDate'];
         print <<< _HTML_
         <tr>
             <td>Appointment date</td>

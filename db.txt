@@ -16,7 +16,7 @@ CREATE TABLE PATIENT
 CREATE TABLE BATCH
     (Id             INT             NOT NULL    AUTO_INCREMENT,
      Manufacturer   VARCHAR(15)     NOT NULL,
-     Expiredate     DATE            NOT NULL,
+     ExpireDate     DATE            NOT NULL,
      PRIMARY KEY (Id)
     );
 
@@ -28,11 +28,10 @@ CREATE TABLE DOSE
     );
 
 CREATE TABLE APPOINTMENT
-    (Id     INT     NOT NULL    AUTO_INCREMENT,
-     Pid    INT     NOT NULL,
+    (Pid    INT     NOT NULL,
      Date   DATE    NOT NULL,
      Tno   INT     NOT NULL,
-     PRIMARY KEY (Id),
      FOREIGN KEY (Tno) REFERENCES DOSE (Tno) ON DELETE CASCADE,
      FOREIGN KEY (Pid) REFERENCES PATIENT (Id) ON DELETE CASCADE
     );
+    

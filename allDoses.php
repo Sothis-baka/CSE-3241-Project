@@ -38,7 +38,7 @@
             </tr>
     _HTML_;
 
-    $sql_doses = "SELECT d.Tno, d.Bid, b.Manufacturer, b.Expiredate, p.Fname, p.Lname, a.Date As AppDate FROM dose d INNER JOIN batch b on d.Bid = b.Id LEFT JOIN appointment a on d.Tno = a.Tno 
+    $sql_doses = "SELECT d.Tno, d.Bid, b.Manufacturer, b.ExpireDate, p.Fname, p.Lname, a.Date As AppDate FROM dose d INNER JOIN batch b on d.Bid = b.Id LEFT JOIN appointment a on d.Tno = a.Tno 
                     LEFT JOIN patient p on p.Id = a.Pid ORDER BY d.Tno ASC "; //find all doses
     $result_doses = mysqli_query($conn, $sql_doses);
     if (!$result_doses) {
@@ -53,7 +53,7 @@
         $tno = $row_doses['Tno'];
         $bid = $row_doses['Bid'];
         $manufacturer = $row_doses['Manufacturer'];
-        $eDate = $row_doses['Expiredate'];
+        $eDate = $row_doses['ExpireDate'];
         $fname = $row_doses['Fname'];
         $lname = $row_doses['Lname'];
         $aDate = $row_doses['AppDate'];

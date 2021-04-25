@@ -49,9 +49,9 @@
     while ($row = mysqli_fetch_array($result_manuf, MYSQLI_ASSOC)) {
         $manufacturer = $row['Manufacturer'];
         $sql_totalDose = "SELECT COUNT(*) AS total FROM dose INNER JOIN batch ON dose.Bid=batch.Id WHERE Manufacturer='$manufacturer'";
-        $sql_availableDose = "SELECT COUNT(*) AS available FROM dose AS d INNER JOIN batch AS b ON d.Bid=b.Id WHERE Manufacturer='$manufacturer' AND Expiredate >= '$today' AND Tno NOT IN (SELECT Tno FROM appointment NATURAL JOIN dose)";
+        $sql_availableDose = "SELECT COUNT(*) AS available FROM dose AS d INNER JOIN batch AS b ON d.Bid=b.Id WHERE Manufacturer='$manufacturer' AND ExpireDate >= '$today' AND Tno NOT IN (SELECT Tno FROM appointment NATURAL JOIN dose)";
         $sql_distributedDose = "SELECT COUNT(*) AS distributed FROM dose INNER JOIN batch ON dose.Bid=batch.Id WHERE Manufacturer='$manufacturer' AND Tno IN (SELECT Tno FROM appointment NATURAL JOIN dose)";
-        $sql_expiredDose = "SELECT COUNT(*) AS expired FROM dose INNER JOIN batch ON dose.Bid=batch.Id WHERE Manufacturer='$manufacturer' AND Expiredate < '$today'";
+        $sql_expiredDose = "SELECT COUNT(*) AS expired FROM dose INNER JOIN batch ON dose.Bid=batch.Id WHERE Manufacturer='$manufacturer' AND ExpireDate < '$today'";
 
         $result_totalDose = mysqli_query($conn, $sql_totalDose);
         $result_availableDose = mysqli_query($conn, $sql_availableDose);
